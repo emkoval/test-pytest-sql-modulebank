@@ -1,0 +1,31 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: test-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ekmaxk
+      MYSQL_DATABASE: mytestdb
+      MYSQL_USER: emkoval
+      MYSQL_PASSWORD: ekmaxk
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  postgres:
+    image: postgres:17
+    container_name: test-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: emkoval
+      POSTGRES_PASSWORD: ekmaxk
+      POSTGRES_DB: mytestdb
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  mysql_data:
+  postgres_data:

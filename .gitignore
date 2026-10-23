@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Виртуальное окружение
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+
+# Данные Docker (если вдруг окажутся в папке)
+mysql_data/
+postgres_data/
+
+# ОС
+.DS_Store
+Thumbs.db
