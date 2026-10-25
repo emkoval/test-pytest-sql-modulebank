@@ -1,7 +1,6 @@
 import pytest
 from con_db import DATABASES
 
-
 @pytest.fixture(params=DATABASES)
 def db(request):
     return DATABASES[request.param]
@@ -19,7 +18,6 @@ def connection(db):
 #     assert connection.open
 # не работает на универсальный вариант
 # но вообще следующий тест по сути содержит эту же проверку
-
 
 def test_select_now(connection, db):
     """

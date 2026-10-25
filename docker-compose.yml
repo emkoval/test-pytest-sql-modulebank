@@ -26,6 +26,20 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  oracle:
+    image: gvenzl/oracle-free:slim
+    container_name: test-oracle
+    restart: unless-stopped
+    environment:
+      ORACLE_PASSWORD: ekmaxk
+      APP_USER: emkoval
+      APP_USER_PASSWORD: ekmaxk
+    ports:
+      - "1521:1521"
+    volumes:
+      - oracle_data:/opt/oracle/oradata
+
 volumes:
+  oracle_data:
   mysql_data:
   postgres_data:
