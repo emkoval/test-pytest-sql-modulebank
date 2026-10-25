@@ -14,11 +14,6 @@ def connection(db):
     yield connect
     connect.close()
 
-# def test_connection_open(connection):
-#     assert connection.open
-# не работает на универсальный вариант
-# но вообще следующий тест по сути содержит эту же проверку
-
 def test_select_now(connection, db):
     """
     Выполняет простейший запрос
@@ -30,7 +25,7 @@ def test_select_now(connection, db):
     assert row is not None # ответ получен
     assert row[0] is not None # дата и время существуют в ответе
 
-
+@pytest.mark.xfail(strict=True, reason="демонстрация")
 def test_wrong_password(db):
     """
     Демонстрация падения с неправильным паролем
