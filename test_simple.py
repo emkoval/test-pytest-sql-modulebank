@@ -1,4 +1,5 @@
 import pytest
+from datetime import datetime
 from con_db import DATABASES
 
 @pytest.fixture(params=DATABASES)
@@ -22,8 +23,8 @@ def test_select_now(connection, db):
     with connection.cursor() as cur:
         cur.execute(db['query'])
         row = cur.fetchone()
-    assert row is not None # ответ получен
-    assert row[0] is not None # дата и время существуют в ответе
+    assert row is not None, "Ответ не получен" # ответ получен
+    assert isinstance(row[0], datetime), "Не показывает дату/время" # дата и время существуют в ответе, в таком виде должно работать для всех СУБД
 
 @pytest.mark.xfail(strict=True, reason="демонстрация")
 def test_wrong_password(db):
@@ -36,5 +37,6 @@ def test_wrong_password_raises_error(db):
     """
     Не падает, проверяет ошибку
     """
-    with pytest.raises(db['error']):
+    with pytest.raises(db['error']) as exc:
         db['connect'](password="wrong_password")
+    assert db['auth_error_text'] in str(exc.value)

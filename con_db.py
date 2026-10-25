@@ -42,15 +42,18 @@ DATABASES = {
         'connect': get_connection_mysql,
         'query': "SELECT NOW()",
         'error': pymysql.err.OperationalError,
+        'auth_error_text':'1045',
     },
     'postgres': {
         'connect': get_connection_postgres,
         'query': "SELECT NOW()",
         'error': psycopg.OperationalError,
+        'auth_error_text': 'password authentication failed',
     },
     'oracle': {
         'connect': get_connection_oracle,
         'query': 'select sysdate from dual',
         'error': oracledb.DatabaseError,
+        'auth_error_text': 'ORA-01017',
     },
 }
